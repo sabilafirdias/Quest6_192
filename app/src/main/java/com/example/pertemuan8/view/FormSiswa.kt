@@ -56,6 +56,11 @@ fun FormIsian(
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     colorResource(id = R.color.tua))
             )}
-    ){
+    ){ isiRuang ->
+        Column(modifier = Modifier.padding(isiRuang),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally) {
+            //edit 3 : value, onValueChange, selected, onClick
+        }
     }
 }
