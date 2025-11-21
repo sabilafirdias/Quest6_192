@@ -59,49 +59,44 @@ fun FormIsian(
     ){ isiRuang ->
         Column(modifier = Modifier.padding(isiRuang),
             verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally) {
+            horizontalAlignment = Alignment.CenterHorizontally){
             //edit 3 : value, onValueChange, selected, onClick
             OutlinedTextField(
                 value = txtNama,
                 singleLine = true,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier
-                    .padding(top = 20.dp)
+                    .padding(top=20.dp)
                     .width(250.dp),
-                label = { Text(text = "Nama Lengkap") },
+                label = {Text(text = "Nama Lengkap")},
                 onValueChange = {
                     txtNama = it
                 },
             )
-            HorizontalDivider(
-                modifier = Modifier
-                    .padding(all = 20.dp)
-                    .width(250.dp), thickness = Thickness, color = colorResource(id = R.color.muda)
-            )
-            Row {
-                pilihanJK.forEach { item ->
-                    Row(
-                        modifier = Modifier.selectable(
+            HorizontalDivider(modifier = Modifier
+                .padding(all = 20.dp)
+                .width(250.dp), thickness = Thickness,color = colorResource(id = R.color.muda))
+            Row{
+                pilihanJK.forEach{ item->
+                    Row(modifier = Modifier.selectable(
                         selected = txtGender == item,
                         onClick = {
                             txtGender = item
                         }
                     ),
-                        verticalAlignment = Alignment.CenterVertically) {
+                        verticalAlignment = Alignment.CenterVertically){
                         RadioButton(
                             selected = txtGender == item,
                             onClick = {
-                                txtGender = item
-                            }
+                                txtGender = item}
                         )
                         Text(text = item)
                     }
                 }
             }
-            HorizontalDivider(
-                modifier = Modifier
-                    .padding(20.dp)
-                    .width(250.dp),
+            HorizontalDivider(modifier = Modifier
+                .padding(20.dp)
+                .width(250.dp),
                 thickness = 1.dp,
                 color = colorResource(id = R.color.muda)
             )
@@ -116,6 +111,16 @@ fun FormIsian(
                     txtAlamat = it
                 },
             )
+            Spacer(modifier = Modifier.height(20.dp))
+            Button(
+                modifier = Modifier.fillMaxWidth(1f)
+                    .padding(25.dp),
+                enabled = txtAlamat.isNotEmpty(),
+                onClick = {onSubmitButtonClicked(listData)},
+                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.tua))
+            ) {
+                Text(stringResource(id = R.string.submit))
+            }
         }
     }
 }
