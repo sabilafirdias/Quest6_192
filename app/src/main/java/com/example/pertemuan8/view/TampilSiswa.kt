@@ -32,13 +32,43 @@ fun TampilData(
     //edit 1 : parameter statusUiSiswa
     statusUiSiswa: Siswa,
     onBackButtonClicked:()->Unit
-) {
+){
     //edit 2 : items Pair
     val items = listOf(
-        Pair(stringResource(id = R.string.nama_lengkap), statusUiSiswa.nama),
-        Pair(stringResource(id = R.string.jenis_kelamin), statusUiSiswa.gender),
-        Pair(stringResource(id = R.string.alamat), statusUiSiswa.alamat)
+        Pair(stringResource(id=R.string.nama_lengkap), statusUiSiswa.nama),
+        Pair(stringResource(id=R.string.jenis_kelamin), statusUiSiswa.gender),
+        Pair(stringResource(id=R.string.alamat), statusUiSiswa.alamat)
     )
-
-
+    Scaffold (modifier = Modifier,
+        topBar = {
+            TopAppBar(
+                title = {Text(text = stringResource(id=R.string.tampil), color = Color.White)},
+                colors = TopAppBarDefaults.mediumTopAppBarColors(colorResource(id=R.color.tua))
+            )
+        }){ isiRuang->
+        Column (
+            modifier = Modifier.padding(isiRuang),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium)),
+                verticalArrangement = Arrangement.spacedBy (10.dp)
+            ) {
+                items.forEach { item ->
+                    Column {
+                        Text(text = item.first.uppercase(), fontSize = 16.sp)
+                        Text(text = item.second, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    }
+                    HorizontalDivider(thickness = 1.dp, color = colorResource(id=R.color.muda))
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = onBackButtonClicked,
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.tua))) {
+                    Text(text = stringResource(id = R.string.back))
+                }
+            }
+        }
+    }
 }
